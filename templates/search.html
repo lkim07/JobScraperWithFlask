@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+/>
+  <title>Document</title>
+</head>
+<body>
+  <main class="container">
+
+    <nav>
+      <details class="dropdown" style="padding-top: 1%;">
+        <summary>
+          Searched Keywords
+        </summary>
+        <ul>
+          {% for job in db.keys() %}
+            <li><a href="/search?keyword={{job}}" class="secondary">{{job}}</a></li>
+          {% endfor %}
+        </ul>
+      </details>
+
+      <ul>
+        <li><strong>Laura's Job Scraper</strong></li>
+      </ul>
+
+      <ul>
+        <li><a href="/" class="secondary">Move Home to Search</a></li>
+      </ul>
+    </nav>
+
+
+    <hgroup>
+        <h1>Search Results for "{{keyword}}":</h1>
+        <a target="_blank" href="/export?keyword={{keyword}}">Export to File</a>
+    </hgroup>
+ 
+
+    <table class="striped">
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>Company Name</th>
+            <th>Description</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% for job in jobs %}
+            <tr> 
+                <td>{{job.job_title}}</td>
+                <td>{{job.company_name}}</td>
+                <td>{{job.job_description}}</td>
+                <td><a href="{{job.job_link}}" target="_blank">Apply Now &rarr;</a></td>
+                
+            
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+</main>
+  
+</body>
+</html>
